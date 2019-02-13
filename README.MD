@@ -1,0 +1,2 @@
+Volvme app initialization
+
