@@ -4,20 +4,27 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false});
-const db = mongoose.connection;
-//handle mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  // we're connected!
-});
+// import app configurations
+const db = require('./config/db')
 
+// const mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false});
+// const db = mongoose.connection;
+// //handle mongo error
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//   // we're connected!
+// });
+
+
+
+//Mount Routers
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 
+//Instansiate App
 const app = express();
 
 app.use(logger('dev'));
@@ -30,21 +37,23 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter)
 app.use('/users', usersRouter);
 
-/// catch 404 and forwarding to error handler
+// Error Handlers
+
+// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-/// error handlers
-// // Catch unauthorised errors
-// app.use(function (err, req, res, next) {
-//   if (err.name === 'UnauthorizedError') {
-//     res.status(401);
-//     res.json({"message" : err.name + ": " + err.message});
-//   }
-// });
+
+// catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

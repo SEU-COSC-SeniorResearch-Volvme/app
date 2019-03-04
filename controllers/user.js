@@ -13,5 +13,42 @@ exports.index = function(req, res) {
 	})
 }
 
+exports.getAllUsers = function(req, res, next) {
+
+	res.send("Lists all Users")
+}
+
+exports.addFriend = function(req, res, next) {
+
+	res.send("Add a Friend to a Users Friend list")
+}
+
+exports.removeFriend = function(req, res, next) {
+
+	res.send("Remove a Friend from a Users Friend list")
+}
+
+
+exports.getFriends = function(req, res, next) {
+
+	res.send("List all friends of a User")
+}
+
+exports.createProject = function(req, res, next) {
+
+	res.send("Add a Project to a Users Project list")
+}
+
+exports.updateProject = function(req, res, next) {
+
+	res.send("Edit a User Project")
+}
+
+exports.removeProject = function(req, res, next) {
+
+	res.send("Remove a User Project")
+}
+
+
 
 

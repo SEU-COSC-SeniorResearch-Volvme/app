@@ -1,0 +1,469 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"con",
+				"controller"
+			],
+			[
+				"Con",
+				"console"
+			],
+			[
+				"user",
+				"userController"
+			],
+			[
+				"auth",
+				"authController"
+			],
+			[
+				"pr",
+				"profile"
+			],
+			[
+				"new_user",
+				"new_user_profile"
+			],
+			[
+				"_",
+				"_id"
+			],
+			[
+				"User",
+				"UserProfile"
+			],
+			[
+				"ge",
+				"generateJWT"
+			],
+			[
+				"se",
+				"setPassword"
+			],
+			[
+				"A",
+				"Account"
+			],
+			[
+				"S",
+				"String"
+			],
+			[
+				"s",
+				"status"
+			],
+			[
+				"Us",
+				"UserController"
+			],
+			[
+				"val",
+				"validateUnique"
+			],
+			[
+				"msg",
+				"msgHash"
+			],
+			[
+				"sa",
+				"saved_user"
+			],
+			[
+				"to",
+				"toAuthJSON"
+			],
+			[
+				"c",
+				"create"
+			],
+			[
+				"p",
+				"pbkdf2Sync"
+			],
+			[
+				"time",
+				"timestamps"
+			],
+			[
+				"e",
+				"email"
+			],
+			[
+				"body",
+				"bodyParser"
+			],
+			[
+				"new",
+				"new_user"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"ha",
+				"hashSync"
+			],
+			[
+				"b",
+				"body"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"ke",
+				"keystreamByte"
+			],
+			[
+				"rc",
+				"rc4Decrypt"
+			],
+			[
+				"pla",
+				"plainChar"
+			],
+			[
+				"plain",
+				"plainChar"
+			],
+			[
+				"ciph",
+				"ciphertext"
+			],
+			[
+				"ciphert",
+				"ciphertext"
+			],
+			[
+				"key",
+				"keystreamByte"
+			],
+			[
+				"cipher",
+				"cipherText"
+			],
+			[
+				"ci",
+				"cipherChar"
+			],
+			[
+				"bin",
+				"binPlainChar"
+			],
+			[
+				"menu",
+				"menuOption"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 1906,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/db.js",
+			"settings":
+			{
+				"buffer_size": 359,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/johnny/Desktop/Volvme/app",
+		"/home/johnny/Desktop/Volvme/app/config"
+	],
+	"file_history":
+	[
+		"/home/johnny/Desktop/Volvme/app/app.js",
+		"/home/johnny/Desktop/volvme-api/Controllers/Auth.js",
+		"/home/johnny/volvme-api/apps/user.js",
+		"/home/johnny/volvme-api/controllers/user.js",
+		"/home/johnny/volvme-api/controllers/AuthController.js",
+		"/home/johnny/volvme-api/routers/index.js",
+		"/home/johnny/volvme-api/routers/community.js",
+		"/home/johnny/volvme-api/controllers/UserController.js",
+		"/home/johnny/volvme-api/controllers/community.js",
+		"/home/johnny/volvme-api/routers/auth.js",
+		"/home/johnny/volvme-api/controllers/auth.js",
+		"/home/johnny/volvme-api/models/user.js",
+		"/home/johnny/volvme-api/apps/auth.js",
+		"/home/johnny/volvme-api/apps/community.js",
+		"/home/johnny/volvme-api/config/db.js",
+		"/home/johnny/volvme-api/Controllers/radio.js",
+		"/home/johnny/volvme-api/Controllers/user.js",
+		"/home/johnny/volvme-api/Controllers/community.js",
+		"/home/johnny/volvme-api/Controllers/auth.js",
+		"/home/johnny/volvme-api/models/venue.js",
+		"/home/johnny/volvme-api/models/event.js",
+		"/home/johnny/volvme-api/models/post.js",
+		"/home/johnny/volvme-api/apps/radio.js",
+		"/home/johnny/volvme-api/routes/community.js",
+		"/home/johnny/volvme-api/app.js",
+		"/home/johnny/volvme-api/routes/auth.js",
+		"/home/johnny/volvme-api/routes/volumeClient.js",
+		"/home/johnny/volvme-api/routes/index.js",
+		"/home/johnny/.config/sublime-text-3/Packages/User/untitled.sublime-syntax",
+		"/home/johnny/volvme-api/routes/radio.js",
+		"/home/johnny/volvme-api/Controllers/UserController.js",
+		"/home/johnny/volvme-api/Controllers/authController.js",
+		"/home/johnny/volvme-api/routes/user.js",
+		"/home/johnny/volvme-api/Models/User.js",
+		"/home/johnny/volvme-api/Models/Group.js",
+		"/home/johnny/volvme-api/routes/profile.js",
+		"/home/johnny/volvme-api/Models/Profile.js",
+		"/home/johnny/Documents/Software Engineering II/app/team12aero-master/app.js",
+		"/home/johnny/Documents/Software Engineering II/app/team12aero-master/test/test.js",
+		"/home/johnny/Documents/Software Engineering II/app/team12aero-master/package.json",
+		"/home/johnny/Documents/Senior Research/Project/volvme-api/routes/user.js",
+		"/home/johnny/volvme-api/Controllers/ProfileController.js",
+		"/home/johnny/volvme-api/Models/Project.js",
+		"/home/johnny/volvme-api/Controllers/AuthController.js",
+		"/home/johnny/volvme-api/Models/Account.js",
+		"/home/johnny/volvme-api/node_modules/bluebird/js/release/method.js",
+		"/home/johnny/volvme-api/bin/www",
+		"/home/johnny/volvme-api/config.js",
+		"/home/johnny/volvme-api/Controllers/signup.html",
+		"/home/johnny/volvme-api/package.json",
+		"/home/johnny/package-lock.json",
+		"/home/johnny/Documents/Software Engineering II/Repositories/team12aero/routes/gateway.js",
+		"/home/johnny/Documents/Software Engineering II/Repositories/RESTful-API-master/REST API/RESTful API/routes/gateway.js",
+		"/home/johnny/Documents/Software Engineering II/Repositories/RESTful-API-master/REST API/RESTful API/app.js",
+		"/home/johnny/Downloads/expressTemplate/app.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme-app/client/src/index.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme-app/routes/users.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme-app/client/package.json",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme-app/client/src/App.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme/client/src/App.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme/server.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme-app/client/package-lock.json",
+		"/home/johnny/Documents/mongoDBTestInterface.js",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme/package.json",
+		"/run/user/1001/gvfs/sftp:host=167.99.171.92,user=root/root/volvme/client/package.json",
+		"/home/johnny/Documents/HW02-jyoung9.py",
+		"/home/johnny/.local/share/Trash/files/Mytest/test.js"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								586,
+								586
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "config/db.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								359,
+								359
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 46.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "volvme.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 151.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
