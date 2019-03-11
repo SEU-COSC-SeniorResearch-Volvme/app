@@ -31,8 +31,12 @@ exports.removeFriend = function(req, res, next) {
 
 exports.getFriends = function(req, res, next) {
 
-	res.send("List all friends of a User")
-}
+	//res.send("List all friends of a User")
+	User.find({ _id: req._id }, 'friends', function(err, friends) {
+		if (err) return next(err)
+		res.status(200).json(friends)
+	}
+)}
 
 exports.createProject = function(req, res, next) {
 
@@ -48,7 +52,3 @@ exports.removeProject = function(req, res, next) {
 
 	res.send("Remove a User Project")
 }
-
-
-
-
