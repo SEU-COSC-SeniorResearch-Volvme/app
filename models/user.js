@@ -22,7 +22,7 @@ const User = new Schema({
 	        example: "username@mail.com or user.name@email.org"
 	    },
 		hash: {
-			type: String, 
+			type: String,
 			required: true,
 			description: "The hash(password) stored for privacy"
 		},
@@ -71,8 +71,14 @@ const User = new Schema({
 	    	ref: 'Group'
 	    }],
 	    friends: [{
-	    	type: Schema.Types.ObjectId,
-	    	ref: 'User'
+				friend: {
+					type: Schema.Types.ObjectId,
+		    	ref: 'User',
+					accepted: {
+						type: boolean
+						default: false
+					}
+				}
 	    }]
 	}
 	//createdAt/updatedAt Timestamps
@@ -107,8 +113,8 @@ User.methods.generateJWT = function() {
 	}, 'secret' );
 };
 
-User.methods.toProfile = function() { 
-	return this.profile 
+User.methods.toProfile = function() {
+	return this.profile
 };
 
 User.methods.toAuthProfile = function() {
