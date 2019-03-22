@@ -9,18 +9,18 @@ const jwt = require('jsonwebtoken');
 const User = new Schema({
 
 	_id: Schema.Types.ObjectId,
+	email: {
+		type: String,
+		index: true,
+		required: [true, "An email is required for signup"],
+		lowercase: true,
+		unique: true,
+		uniqueCaseInsensitive: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+        description: "A valid email address",
+        example: "username@mail.com or user.name@email.org"
+	},
 	auth: {
-		email: {
-			type: String,
-			index: true,
-			required: [true, "An email is required for signup"],
-			lowercase: true,
-			unique: true,
-			uniqueCaseInsensitive: true,
-	        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
-	        description: "A valid email address",
-	        example: "username@mail.com or user.name@email.org"
-	    },
 		hash: {
 			type: String,
 			required: true,
@@ -108,7 +108,7 @@ User.methods.generateJWT = function() {
 	return jwt.sign({
 		id: this._id,
 		name: this.profile.name,
-		email: this.auth.email,
+		email: this.email,
 		exp: parseInt(exp.getTime() / 1000),
 	}, 'secret' );
 };

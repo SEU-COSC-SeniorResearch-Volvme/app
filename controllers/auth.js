@@ -14,9 +14,7 @@ exports.postSignup = function(req, res, next) {
 	const new_user = new User({
 
      	_id: mongoose.Types.ObjectId(),
-     	auth: { 
-     		email: req.body.email 
-     	},
+     	email: req.body.email,
     	profile: { 
     		name: req.body.name 
     	}
@@ -24,9 +22,8 @@ exports.postSignup = function(req, res, next) {
     new_user.setPassword(req.body.password)
   	new_user.save(function(err, new_user) {
 
-      	if (err)
-      		return next(err)
-      	//let token = new_user.generateJWT()
+      	if (err) return res.status(500).json(err)
+      	let token = new_user.generateJWT()
       	//req.session.userID = new_user._id;
       	res.status(201).json(new_user.toAuthProfile()); //.redirect('profile')
    	}) 
@@ -35,25 +32,20 @@ exports.postLogin = function(req, res, next) {
 
 	User.findOne(
 		
-		{ //query params//
-			auth: {
-				email: req.body.email
-			}
-		},
-		{ //return values//
-			profile: true
-		},
+		 //query params//
+		{email: req.body.email, password: req.body.password},
+		// { //return values//
+		// 	profile: true
+		// },
 		//callback function//
 		function(err, user) {
 
-			if (err)
-				return res.status(500).json(err)
-	  		if (!user) 
-	  			return res.status(204).json({"message": "The email provided is not registered with us!"})
-	  		if (!user.validPassword(req.body.password)) 
-	  			return res.status(401).json({"message": "Invalid Password"})
+			if (err) return res.status(500).json(err) //next(err)
+	  		let token = user.generateJWT()
+	  		if (!user) return res.status(204).json({"message": "The email provided is not registered with us!"})
+	  		if (!user.validPassword(req.body.password)) return res.status(401).json({"message": "Invalid Password"})
 	  		//Success//
-			return res.status(200).send(user.toAuthProfile())
+			return res.status(200).json(user.toAuthProfile()) //(user.toAuthProfile())
 		}
 	)
 }//End Login//
