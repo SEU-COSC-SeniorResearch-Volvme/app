@@ -73,9 +73,9 @@ const User = new Schema({
 	    friends: [{
 				friend: {
 					type: Schema.Types.ObjectId,
-		    	ref: 'User',
+		    		ref: 'User',
 					accepted: {
-						type: boolean
+						type: Boolean,
 						default: false
 					}
 				}

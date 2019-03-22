@@ -50,7 +50,7 @@ exports.removeFriend = function(req, res, next) {
 exports.getFriends = function(req, res, next) {
 
 	//res.send("List all friends of a User")
-	User.find({ _id: req.id }, 'friends', function(err, friends) {
+	User.find({ _id: this.id }, 'friends', function(err, friends) {
 		if (err) return next(err)
 		res.status(200).json(friends)
 	}
