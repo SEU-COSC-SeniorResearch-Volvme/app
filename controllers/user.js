@@ -1,10 +1,10 @@
 //Volvme User 'Dashboard' Controller//
 
-const mongoose = require('mongoose');
-const db = mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false});
+const mongoose = require('mongoose')
+const db = mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false})
 
 //Import Model//
-const User = require('../models/user');
+const User = require('../models/user')
 
 exports.index = function(req, res) {
 	res.json({
@@ -13,10 +13,30 @@ exports.index = function(req, res) {
 	})
 }
 
-exports.getAllUsers = function(req, res, next) {
+exports.getAllUsers = function(req, res) {
 
-	res.send("Lists all Users")
+	//res.send("Lists all Users")
+	User.find({}, function(err, users) {
+		if (err) return res.status(500).json("Error finding all Users")
+			res.status(200).json(users)
+	})
 }
+
+exports.getUserByID = function(req, res) {
+
+	User.findById(req.params.id, function (err, user) {
+        if (err) return res.status(500).send("Error Finding this User")
+        if (!user) return res.status(404).send("No user found.")
+        res.status(200).json(user)
+}
+
+exports.updateUser = function(req, res) {
+
+	User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
+        if (err) return res.status(500).send("Error Finding this User")
+        res.status(200).json(user)
+}
+
 
 exports.addFriend = function(req, res, next) {
 

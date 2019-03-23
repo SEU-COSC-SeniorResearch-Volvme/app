@@ -20,20 +20,19 @@ exports.postSignup = function(req, res, next) {
     	}
     })
     new_user.setPassword(req.body.password)
-  	new_user.save(function(err, new_user) {
+  	new_user.create(function(err, new_user) {
 
       	if (err) return res.status(500).json(err)
-      	let token = new_user.generateJWT()
+      	//let token = new_user.generateJWT()
       	//req.session.userID = new_user._id;
       	res.status(201).json(new_user.toAuthProfile()); //.redirect('profile')
    	}) 
 }//End Post Signup//
 exports.postLogin = function(req, res, next) {
 
-	User.findOne(
-		
+	db.User.findOne(
 		 //query params//
-		{email: req.body.email, password: req.body.password},
+		{email: req.body.email},
 		// { //return values//
 		// 	profile: true
 		// },
