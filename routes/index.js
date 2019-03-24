@@ -1,5 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+//Import All Routers
+const authRouter = require('./auth')
+const communityRouter = require('./community')
+const userRouter = require('./user')
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

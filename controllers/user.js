@@ -1,17 +1,93 @@
 //Volvme User 'Dashboard' Controller//
-
 const mongoose = require('mongoose')
 const db = mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false})
 
-//Import Model//
-const User = require('../models/user')
+//Import Models//
+const User = require('../models/user');
 
+
+//Export Model Controls//
 exports.index = function(req, res) {
 	res.json({
 		info: "This is the Volvme api user index point. Refer to the Volvme api index point (../api) for complete api documentation. Thanks for visiting Volvme :)",
 		suggestion: "Visit /signup to create a new user with us! :)"
 	})
 }
+
+exports.signup = function(req, res, next) {
+
+	const new_user = new User({
+
+     	_id: mongoose.Types.ObjectId(),
+     	email: req.body.email,
+    	profile: { 
+    		name: req.body.name 
+    	}
+    })
+    new_user.setPassword(req.body.password)
+  	new_user.save(function(err, new_user) {
+
+      	if (err) return res.status(500).json(err)
+      	req.session.user = new_user
+      	return res.status(201).json(new_user.toAuthProfile()) //.redirect('profile')
+   	})
+}//End Post Signup//
+
+exports.login = function(req, res, next) {
+
+	if (req.body.email && req.body.password) {
+		const user = User.findOne(
+			{	email: req.body.email	},
+			function(err, user) {
+				if (err) return res.status(500).send("Error Finding User")
+				if (!user) return res.status(204).json({"message": "The email provided is not registered with us!"})
+	  			if (!user.validPassword(req.body.password)) return res.status(401).json({"message": "Invalid Password"})
+	  			req.session.user = user
+	  			return res.status(200).json(user.toAuthProfile())
+			})
+	}
+
+	// db.User.findOne(
+	// 	 //query params//
+	// 	{email: req.body.email},
+	// 	// { //return values//
+	// 	// 	profile: true
+	// 	// },
+	// 	//callback function//
+	// 	function(err, user) {
+
+	// 		if (err) return res.status(500).json(err) //next(err)
+	//   		let token = user.generateJWT()
+	//   		if (!user) return res.status(204).json({"message": "The email provided is not registered with us!"})
+	//   		if (!user.validPassword(req.body.password)) return res.status(401).json({"message": "Invalid Password"})
+	//   		//Success//
+	//   		 res.session.user = user
+	// 		return res.status(200).json(user.toAuthProfile()) //(user.toAuthProfile())
+	// 	}
+	// )
+}//End Login//
+
+exports.dahsboard = function(req, res) {
+
+	const profile = req.session.user.toAuthProfile()
+	return res.status(200).json(profile)
+
+}
+
+exports.logout = function (req, res, next) {
+
+	if (req.session) 
+	{
+		req.session.destroy(function(err) {
+			if (err)
+				return next(err)
+			else
+				return res.redirect('/')
+		})
+	}
+}//End Logout//
+
+
 
 exports.getAllUsers = function(req, res) {
 
@@ -28,6 +104,7 @@ exports.getUserByID = function(req, res) {
         if (err) return res.status(500).send("Error Finding this User")
         if (!user) return res.status(404).send("No user found.")
         res.status(200).json(user)
+	})
 }
 
 exports.updateUser = function(req, res) {
@@ -35,6 +112,7 @@ exports.updateUser = function(req, res) {
 	User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
         if (err) return res.status(500).send("Error Finding this User")
         res.status(200).json(user)
+	})
 }
 
 
@@ -44,7 +122,7 @@ exports.addFriend = function(req, res, next) {
 	let friend = { _id: req.id }
 	User.profile.friends.push(friend)
 	User.save( function(err, success) {
-		if err return next(err)
+		if (err) return next(err)
 		res.status(200).send("Friend added to list, pending aceptance")
 	})
 	//alternate method
@@ -61,7 +139,7 @@ exports.removeFriend = function(req, res, next) {
 	let friend = { _id: req.id }
 	User.profile.friends.pull(friend)
 	User.save( function(err, success) {
-		if err return next(err)
+		if (err) return next(err)
 		res.status(200).send("Friend added to list, pending aceptance")
 	})
 }

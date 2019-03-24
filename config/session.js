@@ -1,0 +1,1 @@
+exports.maxAge = 1000 * 60 * 60 * 4 //four hours

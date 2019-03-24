@@ -8,11 +8,31 @@ const authController = require('../controllers/auth');
 //Initialize Router//
 const authRouter = express.Router();
 
+//Route-Specific Middlewares
+const redirectLogin = function(req, res, next) {
+
+    if (!req.session.userID) {
+        res.redirect('/login')
+    } else {
+        next()
+    }
+}
+
+const redirectDashboard = function(req, res, next) {
+
+    if (!req.session.userID) {
+        res.redirect('/dashboard')
+    } else {
+        next()
+    }
+}
+
+
 //Mount Routes//
 authRouter.post('/signup', authController.postSignup)
-authRouter.get('/signup', authController.getSignup)
+authRouter.get('/signup', redirectLogin, authController.getSignup)
 
-authRouter.post('/login' , authController.postLogin)
+authRouter.post('/login' , redirectDashboard, authController.postLogin)
 
 authRouter.post('/logout', authController.logout)
 
