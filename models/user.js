@@ -122,6 +122,7 @@ User.methods.generateJWT = function() {
 User.methods.toProfile = function() {
 	return {
 		id: this._id,
+		email: this.email,
 		profile: this.profile
 	}
 };
@@ -131,6 +132,7 @@ User.methods.toAuthProfile = function() {
 	return {
 		token: this.generateJWT(),
 		id: this._id,
+		email: this.email,
 		profile: this.profile
 	};
 };

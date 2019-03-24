@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 const db = mongoose.connect('mongodb://localhost/Volvme', {useNewUrlParser: true, autoIndex: false})
 
 //Import Models//
-const User = require('../models/user');
+const User = require('../models/user')
+const Project = require('../models/project')
+const Group = require('../models/group')
 
 
 //Export Model Controls//
@@ -119,7 +121,7 @@ exports.updateUser = function(req, res) {
 exports.addFriend = function(req, res) {
 
 	//res.send("Add a Friend to a Users Friend list")
-	let friend = { _id: req.id }
+	let friend = { _id: req.params.id }
 	User.profile.friends.push(friend)
 	User.save( function(err, success) {
 		if (err) return res.status(500).json(err)
@@ -136,11 +138,11 @@ exports.addFriend = function(req, res) {
 exports.removeFriend = function(req, res) {
 
 	//res.send("Remove a Friend from a Users Friend list")
-	let friend = { id: req.id }
+	let friend = { id: req.params.id }
 	User.profile.friends.pull(friend)
 	User.save( function(err, success) {
 		if (err) return res.status(500).json(err)
-		return res.status(200).send("Friend added to list, pending aceptance")
+		return res.status(200).send("Successflly Removed Friend from List")
 	})
 }
 
@@ -154,17 +156,38 @@ exports.getFriends = function(req, res) {
 	}
 )}
 
-exports.createProject = function(req, res, next) {
+exports.createProject = function(req, res) {
 
-	res.send("Add a Project to a Users Project list")
+	//res.send("Add a Project to a Users Project list")
+	const new_project = new Project({
+
+     	_id: mongoose.Types.ObjectId(),
+     	title: req.params.title,
+    	creator: req.params.creatorID
+    })
+  	new_project.save(function(err, new_project) {
+
+      	if (err) return res.status(500).json(err)
+      	User.profile.projects.push(new_project)
+		User.save( function(err, success) {
+			if (err) return res.status(500).json(err)
+			res.status(201).send("Project Created and Added to Project List")
+		})
+	})
 }
 
-exports.updateProject = function(req, res, next) {
+exports.updateProject = function(req, res) {
 
 	res.send("Edit a User Project")
 }
 
-exports.removeProject = function(req, res, next) {
+exports.deleteProject = function(req, res) {
 
-	res.send("Remove a User Project")
+	//res.send("Remove a User Project")
+	const project = { id: req.params.id }
+	User.profile.projects.pull(project)
+	User.save( function(err, success) {
+		if (err) return res.status(500).json(err)
+		return res.status(200).send("Project Deleted and Removed from List")
+	})
 }
