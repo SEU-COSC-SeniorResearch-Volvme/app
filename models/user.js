@@ -41,7 +41,8 @@ const User = new Schema({
 		},
 		phone: {
 		    type: String,
-		    //required: [true, "A phone number required for signup!"],
+		    required: [true, "A phone number required for signup!"],
+		    default: '555-555-5555',
 		    unique: true,
 		    match: /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/,
 		    description: "7-Digit Phone Number",
@@ -49,17 +50,22 @@ const User = new Schema({
 	    },
 	    location: {
 	    	type: String,
-	    	//required: [true, "Location Required for Signup!"],
+	    	required: [true, "Location Required for Signup!"],
+	    	default: '78704',
 	    	match: /^\d{5}$/,
-	    	description: "5-Digit zipcode",
+	    	description: "7 digit zip code",
 	    	example: "78704"
 	    },
 	    image: {
 	    	type: String,
+	    	required: true,
+	    	default: 'smallHead.png',
 	    	description: "The image source for a users profile image"
 	    },
 	    bio: {
 	    	type: String,
+	    	required: true,
+	    	default: "Story of my life..",
 	    	description: "User Biographical Information"
 	    },
 	    projects: [{
