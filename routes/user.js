@@ -28,6 +28,8 @@ router.post('/signup', controller.signup)
 router.post('/login' , controller.login)
 //router.get('/dashboard', controller.dashboard)
 router.post('/logout', controller.logout)
+router.post('/addFriend', controller.addFriend)
+router.post('/removeFriend', controller.removeFriend)
 
 //Export Router//
 module.exports = router;

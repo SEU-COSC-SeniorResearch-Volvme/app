@@ -116,13 +116,13 @@ exports.updateUser = function(req, res) {
 }
 
 
-exports.addFriend = function(req, res, next) {
+exports.addFriend = function(req, res) {
 
 	//res.send("Add a Friend to a Users Friend list")
 	let friend = { _id: req.id }
 	User.profile.friends.push(friend)
 	User.save( function(err, success) {
-		if (err) return next(err)
+		if (err) return res.status(500).json(err)
 		res.status(200).send("Friend added to list, pending aceptance")
 	})
 	//alternate method
@@ -133,24 +133,24 @@ exports.addFriend = function(req, res, next) {
 	// )
 }
 
-exports.removeFriend = function(req, res, next) {
+exports.removeFriend = function(req, res) {
 
 	//res.send("Remove a Friend from a Users Friend list")
-	let friend = { _id: req.id }
+	let friend = { id: req.id }
 	User.profile.friends.pull(friend)
 	User.save( function(err, success) {
-		if (err) return next(err)
-		res.status(200).send("Friend added to list, pending aceptance")
+		if (err) return res.status(500).json(err)
+		return res.status(200).send("Friend added to list, pending aceptance")
 	})
 }
 
 
-exports.getFriends = function(req, res, next) {
+exports.getFriends = function(req, res) {
 
 	//res.send("List all friends of a User")
 	User.find({ _id: this.id }, 'friends', function(err, friends) {
-		if (err) return next(err)
-		res.status(200).json(friends)
+		if (err) return res.status(500).json(err)
+		return res.status(200).json(friends)
 	}
 )}
 

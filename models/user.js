@@ -43,7 +43,7 @@ const User = new Schema({
 		    type: String,
 		    required: [true, "A phone number required for signup!"],
 		    default: '555-555-5555',
-		    unique: true,
+		    //unique: true
 		    match: /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/,
 		    description: "7-Digit Phone Number",
 		    example: "123-456-7890 or (123)-456-7890"
@@ -120,13 +120,17 @@ User.methods.generateJWT = function() {
 };
 
 User.methods.toProfile = function() {
-	return this.profile
+	return {
+		id: this._id,
+		profile: this.profile
+	}
 };
 
 User.methods.toAuthProfile = function() {
 
 	return {
 		token: this.generateJWT(),
+		id: this._id,
 		profile: this.profile
 	};
 };

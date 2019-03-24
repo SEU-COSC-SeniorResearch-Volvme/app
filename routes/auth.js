@@ -32,7 +32,7 @@ const redirectDashboard = function(req, res, next) {
 authRouter.post('/signup', authController.postSignup)
 authRouter.get('/signup', redirectLogin, authController.getSignup)
 
-authRouter.post('/login' , redirectDashboard, authController.postLogin)
+authRouter.post('/login', authController.postLogin)
 
 authRouter.post('/logout', authController.logout)
 
