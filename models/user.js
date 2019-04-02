@@ -79,6 +79,7 @@ const User = new Schema({
 	    friends: [{
 				friend: {
 					type: Schema.Types.ObjectId,
+					unique: true,
 		    		ref: 'User',
 					accepted: {
 						type: Boolean,

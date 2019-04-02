@@ -16,33 +16,39 @@ exports.index = function(req, res) {
 	})
 }
 
-exports.signup = function(req, res, next) {
+exports.signup = function(req, res) {
 
-	const new_user = new User({
+	if (req.body.name &&
+		req.body.email &&
+		req.body.password)	{
 
-     	_id: mongoose.Types.ObjectId(),
-     	email: req.body.email,
-    	profile: { 
-    		name: req.body.name 
-    	}
-    })
-    new_user.setPassword(req.body.password)
-  	new_user.save(function(err, new_user) {
+		const new_user = new User({
 
-      	if (err) return res.status(500).json(err)
-      	req.session.user = new_user
-      	return res.status(201).json(new_user.toAuthProfile()) //.redirect('profile')
-   	})
+	     	_id: mongoose.Types.ObjectId(),
+	     	email: req.body.email,
+	    	profile: { 
+	    		name: req.body.name 
+	    	}
+    	})
+		new_user.setPassword(req.body.password)
+		new_user.save(function(err, new_user){
+
+					if (err) return res.status(500).json(err)
+					req.session.user = new_user
+					return res.status(201).json(new_user.toAuthProfile())
+				})
+	}
 }//End Post Signup//
 
-exports.login = function(req, res, next) {
+exports.login = function(req, res) {
+
+	if (req.session.user) return res.redirect('http://volvme.xyz/app/user/dashboard')
 
 	if (req.body.email && req.body.password) {
-		const user = User.findOne(
-			{	email: req.body.email	},
-			function(err, user) {
+		User.findOne({email: req.body.email	})
+			.exec(function(err, user) {
 				if (err) return res.status(500).send("Error Finding User")
-				if (!user) return res.status(204).json({"message": "The email provided is not registered with us!"})
+				if (!user) return res.status(404).json({"message": "The email provided is not registered with us!"})
 	  			if (!user.validPassword(req.body.password)) return res.status(401).json({"message": "Invalid Password"})
 	  			req.session.user = user
 	  			return res.status(200).json(user.toAuthProfile())
@@ -84,7 +90,7 @@ exports.logout = function (req, res, next) {
 			if (err)
 				return next(err)
 			else
-				return res.redirect('/')
+				return res.redirect('https://volvme.xyz/')
 		})
 	}
 }//End Logout//
@@ -102,10 +108,12 @@ exports.getAllUsers = function(req, res) {
 
 exports.getUserByID = function(req, res) {
 
-	User.findById(req.params.id, function (err, user) {
+	//const user = {_id: req.body.userID }
+	User.findOne({_id: req.body.userID})
+		.exec(function(err, user) {
         if (err) return res.status(500).send("Error Finding this User")
         if (!user) return res.status(404).send("No user found.")
-        res.status(200).json(user)
+        res.status(200).json(user.toProfile())
 	})
 }
 
@@ -121,29 +129,35 @@ exports.updateUser = function(req, res) {
 exports.addFriend = function(req, res) {
 
 	//res.send("Add a Friend to a Users Friend list")
-	let friend = { _id: req.params.id }
-	User.profile.friends.push(friend)
-	User.save( function(err, success) {
-		if (err) return res.status(500).json(err)
-		res.status(200).send("Friend added to list, pending aceptance")
-	})
-	//alternate method
-	// User.update(
-	// 	{ _id: User._id },
-	// 	{ $push: { profile.friends: friend} },
-	// 	done
-	// )
+	const friend = req.body.friendID
+	const friends = [friend]
+	User.findOne({_id: req.body.userID})
+		.exec(function(err, user) {
+			if (err) return res.status(500).send("Error Finding this User")
+			if (!user) return res.status(404).send("No user found.")
+			user.profile.friends.push(friend)
+			user.save(function(err, success) {
+				if (err) return res.status(500).json(err)
+				return res.status(200).json(user.toAuthProfile())
+			})
+		})
 }
 
 exports.removeFriend = function(req, res) {
 
 	//res.send("Remove a Friend from a Users Friend list")
-	let friend = { id: req.params.id }
-	User.profile.friends.pull(friend)
-	User.save( function(err, success) {
-		if (err) return res.status(500).json(err)
-		return res.status(200).send("Successflly Removed Friend from List")
-	})
+	const friend = req.body.friendID
+	const friends = [friend]
+	User.findOne({_id: req.body.userID})
+		.exec(function(err, user) {
+			if (err) return res.status(500).send("Error Finding this User")
+			if (!user) return res.status(404).send("No user found.")
+			user.profile.friends.pull(friend)
+			user.save(function(err, success) {
+				if (err) return res.status(500).json(err)
+				return res.status(200).json(user.toAuthProfile())
+			})
+		})
 }
 
 

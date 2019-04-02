@@ -29,10 +29,11 @@ router.post('/login' , controller.login)
 //router.get('/dashboard', controller.dashboard)
 router.post('/logout', controller.logout)
 router.get('/all', controller.getAllUsers)
-router.post('/addFriend/id:', controller.addFriend)
-router.post('/removeFriend/id:', controller.removeFriend)
-router.post('/createProject/title:/id:', controller.createProject)
-router.post('/deleteProject/id:', controller.deleteProject)
+router.post('/search', controller.getUserByID)
+router.post('/addFriend', controller.addFriend)
+router.post('/removeFriend', controller.removeFriend)
+router.post('/createProject/:title/:id', controller.createProject)
+router.post('/deleteProject/:id', controller.deleteProject)
 
 //Export Router//
 module.exports = router;
