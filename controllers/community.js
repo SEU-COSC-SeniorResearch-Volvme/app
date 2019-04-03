@@ -13,24 +13,15 @@ exports.index = function(req, res) {
 	const communityUsers = []
 	const communityPosts = []
 
-	// const users = User.find({}, function(err, users) {
-	// 	if (err) return err
-	// 	if (!users) communityUsers = []
-	// 	communityUsers = users
-	// })
-	// const posts = Post.find({}, function(err, posts) {
-	// 	if (err) return err
-	// 	if (!posts) communityPosts = []
-	// 	communityPosts = posts
-	// })
-
-	User.find({}, function(err, users) {
+	User.find({}, {profile: true}, function(err, users) {
 		if (err) return err
 		if (!users) communityUsers = []
-		if (users) 
+		//if (users) 
+
 			Post.find({}, function(err, posts) {
 				if (err) return err
 				if (!posts) communityPosts = []
+
 				return res.status(200).json({
 					welcome: "Welcome to the Volvme Community",
 					users: users,
