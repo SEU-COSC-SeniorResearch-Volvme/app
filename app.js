@@ -13,6 +13,7 @@ const maxAge = require('./config/session').maxAge
 const indexRouter = require('./routes/index')
 //const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
+const communityRouter = require('./routes/community')
 //Instantiate Middleware Services
 const upload = multer()
 //Instansiate App
@@ -55,6 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 //app.use('/auth', authRouter)
 app.use('/user', userRouter)
+app.use('/community', communityRouter)
 
 // Error Handlers
 // catch 404 and forwarding to error handler

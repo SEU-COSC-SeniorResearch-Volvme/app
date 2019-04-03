@@ -11,9 +11,7 @@ const controller = require('../controllers/community')
 
 //Define Routes
 
-router.route('/')
-		.get(controller.index)
-		.post(controller.index)
+router.get('/', controller.index)
 
 
 router.route('/post')
