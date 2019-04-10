@@ -26,8 +26,8 @@ exports.signup = function(req, res) {
 
 	     	_id: mongoose.Types.ObjectId(),
 	     	email: req.body.email,
-	    	profile: { 
-	    		name: req.body.name 
+	    	profile: {
+	    		name: req.body.name
 	    	}
     	})
 		new_user.setPassword(req.body.password)
@@ -84,7 +84,7 @@ exports.dahsboard = function(req, res) {
 
 exports.logout = function (req, res, next) {
 
-	if (req.session) 
+	if (req.session)
 	{
 		req.session.destroy(function(err) {
 			if (err)
@@ -203,5 +203,18 @@ exports.deleteProject = function(req, res) {
 	User.save( function(err, success) {
 		if (err) return res.status(500).json(err)
 		return res.status(200).send("Project Deleted and Removed from List")
+	})
+}
+
+
+
+//jake routes
+
+exports.getStuff = function(req, res) {
+
+	//res.send("Remove a User Project")
+	User.find({}, function(err, users) {
+		if (err) return res.status(500).json("Error finding all Users")
+			res.status(200).json(users)
 	})
 }
