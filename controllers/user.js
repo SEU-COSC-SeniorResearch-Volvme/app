@@ -160,7 +160,6 @@ exports.removeFriend = function(req, res) {
 		})
 }
 
-
 exports.getFriends = function(req, res) {
 
 	//res.send("List all friends of a User")
@@ -206,13 +205,10 @@ exports.deleteProject = function(req, res) {
 	})
 }
 
-
-
 //jake routes
 
 exports.getStuff = function(req, res) {
-
-	//res.send("Remove a User Project")
+	//res.send("Lists all Users")
 	User.find({}, function(err, users) {
 		if (err) return res.status(500).json("Error finding all Users")
 			res.status(200).json(users)
