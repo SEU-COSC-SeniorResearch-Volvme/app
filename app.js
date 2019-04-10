@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const multer = require('multer')
 const session = require('express-session')
 const logger = require('morgan')
-//Import app configurations
+//Import app configurations test
 const db = require('./config/db')
 const secret = require('./config/secret')
 const maxAge = require('./config/session').maxAge
@@ -46,7 +46,7 @@ app.use(session({
         maxAge: maxAge,
         sameSite: true,
         secure: true
-    }   
+    }
 }))
 
 app.use(function(req, res, next) {
