@@ -211,6 +211,6 @@ exports.getStuff = function(req, res) {
 	//res.send("Lists all Users")
 	User.find({}, function(err, users) {
 		if (err) return res.status(500).json("Error finding all Users")
-			res.status(200).json(users)
+		return res.status(200).json(users)
 	})
 }

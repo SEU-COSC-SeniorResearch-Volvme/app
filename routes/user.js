@@ -36,6 +36,6 @@ router.post('/createProject/:title/:id', controller.createProject)
 router.post('/deleteProject/:id', controller.deleteProject)
 
 //jake routes
-router.post('/g', controller.getStuff)
+router.post('/getStuff', controller.getStuff)
 //Export Router//
-module.exports = router;
+module.exports = router
