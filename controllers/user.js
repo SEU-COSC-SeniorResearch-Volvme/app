@@ -100,16 +100,17 @@ exports.logout = function (req, res, next) {
 exports.getAllUsers = function(req, res) {
 
 	//res.send("Lists all Users")
-	User.find({}, function(err, users) {
+	User.find({}, {profile: true}, function(err, users) {
 		if (err) return res.status(500).json("Error finding all Users")
-			res.status(200).json(users)
+		return res.status(200).json(users)
 	})
 }
 
 exports.getUserByID = function(req, res) {
 
 	//const user = {_id: req.body.userID }
-	User.findOne({_id: req.body.userID})
+	User.findOne({_id: req.body.userID},
+								{profile: true})
 		.exec(function(err, user) {
         if (err) return res.status(500).send("Error Finding this User")
         if (!user) return res.status(404).send("No user found.")
@@ -209,7 +210,7 @@ exports.deleteProject = function(req, res) {
 
 exports.getStuff = function(req, res) {
 	//res.send("Lists all Users")
-	User.find({}, function(err, users) {
+	User.find({}, {profile: true}, function(err, users) {
 		if (err) return res.status(500).json("Error finding all Users")
 		return res.status(200).json(users)
 	})
