@@ -14,7 +14,7 @@ const indexRouter = require('./routes/index')
 //const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 const communityRouter = require('./routes/community')
-const radio = require('./services/radio')
+const radioRouter = require('./routes/radio')
 
 //Instantiate Middleware Services
 const storage = multer.diskStorage({
@@ -70,7 +70,7 @@ app.use('/', indexRouter)
 //app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/community', communityRouter)
-app.use('/radio', radio)
+app.use('/radio', radioRouter)
 
 // Error Handlers
 // catch 404 and forwarding to error handler
