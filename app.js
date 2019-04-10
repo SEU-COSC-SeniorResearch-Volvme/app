@@ -14,8 +14,19 @@ const indexRouter = require('./routes/index')
 //const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 const communityRouter = require('./routes/community')
+const radio = require('./services/radio')
+
 //Instantiate Middleware Services
-const upload = multer()
+const storage = multer.diskStorage({
+    destination: function(req, file, done) {
+        done(null, 'uploads')
+    },
+    filename: function(req, file, done) {
+        done(null, file,fieldname + '-' + Date.now())
+    }
+})
+const upload = multer({storage: storage})
+
 //Instansiate App
 const app = express()
 
@@ -53,10 +64,13 @@ const checkSession = function(req, res, next) {
     }
 }
 app.use(express.static(path.join(__dirname, 'public')))
+
+
 app.use('/', indexRouter)
 //app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/community', communityRouter)
+app.use('/radio', radio)
 
 // Error Handlers
 // catch 404 and forwarding to error handler
