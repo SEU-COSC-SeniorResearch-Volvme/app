@@ -118,12 +118,30 @@ exports.getUserByID = function(req, res) {
 	})
 }
 
-exports.updateUser = function(req, res) {
+exports.updateBio = function(req, res) {
 
-	User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
-        if (err) return res.status(500).send("Error Finding this User")
-        res.status(200).json(user)
-	})
+	const bio = req.body.bio
+
+// 	User.findOneAndUpdate({email: req.params.email})
+// 	 		.exec(function(err, user) {
+// 					if (err) return res.status(500).json(err)
+// 					if (!user) return res.status(404).send("No user found.")
+					
+// 					user.save(function(err, success) {
+// 							if (err) return res.status(500).json(err)
+// 							res.status(200).json(user.toAuthProfile())
+// 			})
+// 	})
+// }
+
+	User.findOneAndUpdate( 
+		{email: req.params.email},
+		{$set: { profile: {bio: bio} }},
+		{new: true},
+		function(err, updatedUser) {
+			if (err) return res.status(500).json(err)
+			return res.status(200).json(updatedUser.toAuthProfile())
+		})
 }
 
 

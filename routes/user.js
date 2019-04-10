@@ -34,6 +34,7 @@ router.post('/addFriend', controller.addFriend)
 router.post('/removeFriend', controller.removeFriend)
 router.post('/createProject/:title/:id', controller.createProject)
 router.post('/deleteProject/:id', controller.deleteProject)
+router.put('/updateBio', controller.updateBio)
 
 //jake routes
 router.post('/getStuff', controller.getStuff)
